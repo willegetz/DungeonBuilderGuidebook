@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Text;
 using ApprovalTests;
-using ApprovalTests.Reporters;
 using DungeonBuildersGuidebook1;
 using RpgTools.Dice;
 using System;
@@ -9,7 +8,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DungeonBuildersGuidebook1Tests
 {
-	[TestClass]
+    [TestClass]
 	public class TrapArchitectTests
 	{
 		// The user should also be allowed to pick their Trap Basic
@@ -191,7 +190,6 @@ namespace DungeonBuildersGuidebook1Tests
 			var trapDamage = architect.GetTrapDamageFactory();
 			var trap = new Trap(trapBase, trapEffect, trapDamage);
 			trap.AddNotes("This trap is a test of the note application system.");
-
 			Approvals.Verify(trap);
 
 		}

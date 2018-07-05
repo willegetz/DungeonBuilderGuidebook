@@ -1,0 +1,90 @@
+Rename and move Projects and Solution to new structure
+Current State
+	DungeonBuildersGuidebook\
+		Traps\
+			DungeonBuildersGuidebook\
+				DungeonBuildersGuidebook.csproj
+			DungeonBuildersGuidebook1\
+				DungeonBuildersGuidebook1.csproj
+			Tests\
+				DungeonBuildersGuidebook1Tests\
+					DungeonBuildersGuidebook1Tests.csproj
+			DungeonBuildersGuidebook1.sln
+
+Desired State
+	DungeonBuildersGuidebook\
+		DungeonBuildersGuidebook.sln
+		TrapArchitct\
+			Mvc\
+				TrapArchitectMvc.csproj
+			Console\
+				TrapArchitectConsole.csproj
+		Tests\
+			TrapArchitectTests\
+				Console\
+					TrapArchitectConsoleTests.csproj
+
+1) Rename Traps\ to TrapArchitct\
+
+2) Rename DungeonBuildersGuidebook1.sln to DungeonBuildersGuidebook.sln
+	
+3) DungeonBuildersGuidebook1 to TrapArchitectConsole
+	Rename DungeonBuildersGuidebook1 folder to COnsole
+	Open DungeonBuildersGuidebook.sln
+		Update DungeonBuildersGuidebook1\..proj path to be Console\..proj
+	Rename DungeonBuildersGuidebook1.proj to TrapArchitectConsole.proj
+	Open TrapArchitectConsole.proj
+		Update <RootNamespace> and <AssemblyName> to TrapArchitectConsole
+	Open DungeonBuildersGuidebook.sln
+		Update project name from DungeonBuildersGuidebook1 to TrapArchitectConsole
+		Update path from Console\DungeonBuildersGuidebook1.proj to Console\TrapArchitectConsole.proj
+	Find DungeonBuildersGuidebook1 in *.cs, *.asax, and *.cshtml files under Console and replace it with TrapArchitectConsole
+	Find DungeonBuildersGuidebook1 in *.cs, *.asax, and *.cshtml files under Tests\DungeonBuildersGuidebookTests and replace it with TrapArchitectConsole
+	Find DungeonBuildersGuidebook1 in *.cs, *.asax, and *.cshtml files under DungeonBuildersGuidebook and replace it with TrapArchitectConsole
+
+4) Move Tests\ up a level to root DungeonBuildersGuidebook folder
+	
+5) DungeonBuildersGuidebook1Tests to TrapArchitectConsoleTests
+	Add new folder named TrapArchitectTests\ in the Tests\ folder
+	Move DungeonBuildersGuidebook1Tests\ folder into TrapArchitectTests\ folder
+	Move data.xml into TrapArchitectTests\ folder
+	Rename DungeonBuildersGuidebook1Tests folder to Console
+	Open DungeonBuildersGuidebook.sln
+		Update Tests\DungeonBuildersGuidebook1Tests\..proj path to be ..\Tests\TrapArchitectTests\Console\..proj
+	Rename DungeonBuildersGuidebook1Tests.proj to TrapArchitectConsoleTests.proj
+	Open TrapArchitectConsoleTests.proj
+		Update <RootNamespace> and <AssemblyName> to TrapArchitectConsoleTests
+		Update <Reference><HintPath>..\..\packages to ..\..\..\TrapArchitct\Console\Libraries
+		Update <Reference><HintPath>..\..\DungeonBuildersGuidebook1\Libraries to ..\..\..\TrapArchitct\Console\Libraries
+		Update <ProjectReference Include from ..\..\DungeonBuildersGuidebook1\DungeonBuildersGuidebook1.csproj to ..\..\..\TrapArchitct\Console\TrapArchitectConsole.csproj
+		Update <ProjectReference><Name> to TrapArchitectConsole
+	Open TrapArchitectConsoleTests.sln
+		Update project name from DungeonBuildersGuidebook1Tests to TrapArchitectConsoleTests
+		Update path from TrapArchitectConsoleTests\DungeonBuildersGuidebook1Tests.proj to TrapArchitectTests\Console\TrapArchitectConsoleTests.proj
+	Find DungeonBuildersGuidebook1Tests in *.cs, *.asax, and *.cshtml files under Tests\TrapArchitectTests\Console\ and replace it with TrapArchitectConsoleTests
+
+6) DungeonBuildersGuidebook to TrapArchitectMvc
+	Rename DungeonBuildersGuidebook folder to Mvc
+	Open DungeonBuildersGuidebook.sln
+		Update DungeonBuildersGuidebook\..proj path to be Mvc\..proj
+	Rename DungeonBuildersGuidebook.proj to TrapArchitctMvc.proj
+	Open TrapArchitctMvc.proj
+		Update <RootNamespace> and <AssemblyName> to TrapArchitctMvc
+		Update ProjectReference Include path from ..\DungeonBuildersGuidebook1\DungeonBuildersGuidebook1.csproj to ..\Console\TrapArchitectConsole.proj
+		Update <ProjectReference><Name> From DungeonBuildersGuidebook1 to TrapArchitectConsole
+	Open DungeonBuildersGuidebook1.sln
+		Update project name from DungeonBuildersGuidebook to TrapArchitctMvc
+		Update path from Mvc\DungeonBuildersGuidebook.proj to Mvc\TrapArchitctMvc.proj
+	Find DungeonBuildersGuidebook in *.cs, *.asax, and *.cshtml files under MVC and replace it with TrapArchitectMvc
+	
+7) Move DungeonBuildersGuidebook.sln into root DungeonBuildersGuidebook
+	Move DungeonBuildersGuidebook.sln up a level to root DungeonBuildersGuidebook folder
+	Open DungeonBuildersGuidebook.sln
+		Update Console\ path to TrapArchitect\Console
+		Update Mvc\ path to TrapArchitect\Mvc
+		Update ..Tests\ path to Tests\
+	Open TrapArchitctConsole.proj
+		Update hint path ..\packages (If Any) from to ..\..\packages
+	Open TrapArchitctMvc.proj
+		Update hint path ..\packages (If Any) from to ..\..\packages
+
